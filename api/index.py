@@ -23,7 +23,7 @@ class handler(BaseHTTPRequestHandler):
 		self.end_headers()
 
 		if "user_id" in dic:
-			cursor.execute("SELECT * FROM User WHERE id = %(user_id)s",{'user_id': dic["user_id"]})
+			cursor.execute("SELECT * FROM User")
 			values_array = list(cursor.fetchone())
 			col_names = [desc[0] for desc in cursor.description]
 			message	= dict(zip(col_names, values_array))
