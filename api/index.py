@@ -22,13 +22,13 @@ class handler(BaseHTTPRequestHandler):
 		self.send_header('Content-type','application/json; charset=utf-8')
 		self.end_headers()
 
-		if "student_id" in dic:
-			cursor.execute("SELECT * FROM students WHERE id = %(student_id)s",{'student_id': dic["student_id"]})
+		if "user_id" in dic:
+			cursor.execute("SELECT * FROM user WHERE id = %(user_id)s",{'user_id': dic["user_id"]})
 			values_array = list(cursor.fetchone())
 			col_names = [desc[0] for desc in cursor.description]
 			message	= dict(zip(col_names, values_array))
 		else:
-			message = {"error": "Please provide student_id"}
+			message = {"error": "Please provide user id"}
 
 		self.wfile.write(json.dumps(message, default=str).encode())
 		return
