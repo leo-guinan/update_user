@@ -24,7 +24,7 @@ class handler(BaseHTTPRequestHandler):
 
 		if "user_id" in dic:
 			# cursor.execute("SELECT * FROM user WHERE id = %(user_id)s",{'user_id': dic["user_id"]})
-			cursor.execute("SELECT table_name, column_name, data_type FROM information_schema.columns WHERE table_name = 'user';")
+			cursor.execute("SELECT table_name, column_name, data_type FROM information_schema.columns;")
 			values_array = list(cursor.fetchall())
 			col_names = [desc[0] for desc in cursor.description]
 			message	= dict(zip(col_names, values_array))
